@@ -1,0 +1,35 @@
+extends layout
+
+include mixins/form
+
+block append assets
+
+block content
+  include includes/navbar
+
+  section.vh-100.gradient-custom(style='padding:50px;')
+    .container.h-100
+      .row.d-flex.justify-content-center.align-items-center
+        .col-12.col-md-8.col-lg-6.col-xl-5
+
+          +form()
+            .form-outline.mb-4
+              h3
+                label.form-label(for='with') Moneda
+              select#with.form-select.form-control.form-control-lg(aria-label="Select type of money" disabled)
+                option(selected) ETH
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for) Clave
+              input#code.form-control.form-control-lg(
+                type='text'
+                name='code' 
+                value='sdfas7df6y98d7fas09'
+                disabled)
+
+            .form-outline.mb-2
+              .d-grid.gap-2
+                button#copy.btn.btn-success.btn-lg Copiar clave
+
+  script(type="text/javascript" src="/javascripts/transferReceive.js")

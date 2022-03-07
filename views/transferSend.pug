@@ -1,0 +1,47 @@
+extends layout
+
+include mixins/form
+
+block content
+  include includes/navbar
+
+  section.vh-100.gradient-custom(style='padding:50px;')
+    .container.h-100
+      .row.d-flex.justify-content-center.align-items-center
+        .col-12.col-md-8.col-lg-6.col-xl-5
+
+          +form()
+            .form-outline.mb-4
+              h3
+                label.form-label(for='amount') Cantidad
+              .input-group.mb-3
+                select.form-select.input-group-text(aria-label="Select type of money")
+                  option(selected) Tipo
+                  option(value='1') MXN
+                  option(value='2') USD
+                  option(value='3') ETH
+                input#amoun.form-control.form-control-lg(
+                  type='number'
+                  name='amount' 
+                  placeholder='0')
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for='to') Para
+              input#to.form-control.form-control-lg(
+                type='text'
+                name='to')
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for='with') Pagar con
+              select#with.form-select.form-control.form-control-lg(aria-label="Select type of money" disabled)
+                option(selected) ETH
+
+            .form-outline.mb-2
+              .d-grid.gap-2
+                button.btn.btn-success.btn-lg(type='submit') Enviar
+
+            .form-outline.mb-4
+              .d-grid.gap-2
+                a.btn.btn-primary.btn-lg(href='/') Cancelar

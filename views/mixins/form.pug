@@ -1,0 +1,5 @@
+mixin form(action='')
+  .card.shadow.p-3.mb-5.bg-body.rounded
+    .card-body.p-5.text-center
+      form(method='POST', action=action)
+        block
