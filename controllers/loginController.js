@@ -1,32 +1,39 @@
-const debugPost = require('debug')('login:post')
-const debugPostCreate = require('debug')('login:postCreate')
-const debugGet = require('debug')('login:get')
-const debugSignIn = require('debug')('login:signInMethod');
-const debugSignUp = require('debug')('login:signUpMethod');
+const debugSingup = require('debug')('login:signup');
+const User = require('../models/user');
 
-const auth = require('firebase-admin/auth');
-
-exports.logIn = (req, res, next) => {
-  res.render('login', { title: 'Iniciar sesión' });
-}
-
-exports.sign = (req, res, next) => {
-  if ('username' in req.body) {
-    signUp(req.body);
-  } else {
-    signIn(req.body);
-  }
-  res.status(200).send('ok');
-}
-
-const signIn = (credentials) => {
-  debugSignIn('que tal %o');
-}
-
-const signUp = ({ username, email, gmail }) => {
-  auth.getAuth().createUser({
-    displayName: username,
-    email: email,
-    password: password,
+exports.sigInScreen = (req, res, next) => {
+  res.render('signin', {
+    title: 'Iniciar sesión',
+    signin: true,
+    signup: false,
   });
+}
+
+// Crear cuenta
+exports.signUpScreen = (req, res, next) => {
+  res.render('signup', {
+    title: 'Crear cuenta',
+    signin: false,
+    signup: true,
+  });
+}
+
+exports.signUp = async (req, res, next) => {
+  // res.render('index', { title: 'Inicio' });
+  // debugSingup(req.body);
+  const userSchema = new User({
+    user_username: req.body.username,
+    user_email: req.body.email,
+    user_password: req.body.password,
+  });
+
+  try {
+    const newUser = await userSchema.save();
+    debugSingup(newUser);
+    res.status(200).redirect('/');
+  } catch(err){
+    console.log(err);
+    next(err);
+  };
+
 }

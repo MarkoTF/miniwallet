@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  section.vh-100.gradient-custom(style='padding:50px;')
+    .container.h-100
+      .row.d-flex.justify-content-center.align-items-center
+        .col-12.col-md-8.col-lg-6.col-xl-5
+
+          //Tabs
+          - var lin = signin ? 'active' : ''
+          - var lup = signup ? 'active' : ''
+          ul.nav.nav-pills.mb-3.flex-column.flex-sm-row(id='login-tab' role='tablist')
+            li.nav-item.flex-sm-fill.text-sm-center.d-flex.justify-content-evenly(role='presentation')
+              a#pills-sign-in-tab.nav-link.flex-sm-fill.text-sm-center(
+                class=lin
+                href="/login/signin") Iniciar sesión
+            li.nav-item.flex-sm-fill.text-sm-center.d-flex.justify-content-evenly(role='presentation')
+              a#pills-sign-up-tab.nav-link.flex-sm-fill.text-sm-center(
+                class=lup
+                href="/login/signup") Registrarse
+
+          block form

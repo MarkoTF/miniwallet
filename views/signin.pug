@@ -1,0 +1,17 @@
+extends layouts/loginLayout
+
+include mixins/form
+
+block form
+      // Sign-in
+      #pills-sign-in.tab-pane.fade.show.active(role='tabpanel' aria-labelledby="pills-sign-in")
+        +form()
+          h3.mb-5 Inicia sesión!
+          .form-outline.mb-4
+            input#sign-in-email.form-control.form-control-lg(type='email' name='email')
+            label.form-label(for='sign-in-email') Correo electrónico
+          .form-outline.mb-4
+            input#sign-in-password.form-control.form-control-lg(type='password' name='password')
+            label.form-label(for='typePasswordX-2') Contraseña
+          .d-grid.gap-2
+            button.btn.btn-primary.btn-lg(type='submit') Ir a mi cuenta
