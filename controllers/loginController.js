@@ -1,5 +1,6 @@
 const debugSingup = require('debug')('login:signup');
 const User = require('../models/user');
+const Key = require('../models/key');
 
 exports.sigInScreen = (req, res, next) => {
   res.render('signin', {
@@ -27,13 +28,16 @@ exports.signUp = async (req, res, next) => {
     user_password: req.body.password,
   });
 
-  try {
-    const newUser = await userSchema.save();
-    debugSingup(newUser);
-    res.status(200).redirect('/');
-  } catch(err){
-    console.log(err);
-    next(err);
-  };
+  const newUser = await userSchema.save();
+
+  const keySchema = new Key({
+    key_public: req.body.key_public,
+    key_private: req.body.key_private,
+    key_type: req.body.key_type,
+    key_user: userSchema,
+  });
+
+  const newKey = await keySchema.save();
+  res.status(200).redirect('/');
 
 }

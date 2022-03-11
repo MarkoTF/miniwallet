@@ -16,5 +16,22 @@ block form
       .form-outline.mb-4
         input#sign-up-password.form-control.form-control-lg(type='password' name='password')
         label.form-label(for='typePasswordX-2') Contraseña
+      .form-outline.mb-4
+        select.form-select.input-group-text(
+          name="key_type"
+          aria-label="Select type of money"
+          disabled)
+          option(selected) ETHER
+        label.form-label(for='key_type') Tipo de criptomoneda
+      .form-outline.mb-4
+        input#key_public.form-control.form-control-lg(
+          type='text'
+          name='key_public')
+        label.form-label(for='public_key') Clave pública
+      .form-outline.mb-4
+        input#key_private.form-control.form-control-lg(
+          type='password'
+          name='key_private')
+        label.form-label(for='private_key') Clave privada
       .d-grid.gap-2
         button.btn.btn-primary.btn-lg(type='submit') Crear mi cuenta

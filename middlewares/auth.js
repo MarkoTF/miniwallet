@@ -34,7 +34,7 @@ passport.deserializeUser((id, cb) => {
     User.findOne({ _id: objId })
     .exec((err, user) => {
       if (err){ return cb(err); }
-      cb(null, {user_username: user.user_username, user_email: user.user_email});
+      cb(null, user);
     });
   });
 });

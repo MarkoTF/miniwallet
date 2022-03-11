@@ -15,13 +15,17 @@ block content
               h3
                 label.form-label(for='amount') Cantidad
               .input-group.mb-3
-                select.form-select.input-group-text(aria-label="Select type of money")
-                  option(selected) Tipo
-                  option(value='1') MXN
-                  option(value='2') USD
-                  option(value='3') ETH
+                select.form-select.input-group-text(
+                  aria-label="Select type of money"
+                  name='currency_type')
+                  option(selected) ETH
+                  option(value='MXN') MXN
+                  option(value='USD') USD
+                  option(value='ETH') ETH
                 input#amoun.form-control.form-control-lg(
                   type='number'
+                  min='0'
+                  step='any'
                   name='amount' 
                   placeholder='0')
 

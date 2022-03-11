@@ -32,21 +32,12 @@ db.on('error', () => {
 });
 db.once('open', () => {
 	console.log('Conexión exitosa a la base de datos');
-	//Configuración de sessiones
-	// sessionStorage = new MongoDBStore({
-	// 	mongooseConnection: db,
-	// });
-
 });
 
 app.use(session({
-	//cookie: {
-	//	maxAge: 1000 * 3600 * 24,
-	//},
 	secret: 'Llave secreta',
 	resave: true,
 	saveUninitialized: true,
-	//store: sessionStorage
 }));
 
 // view engine setup
