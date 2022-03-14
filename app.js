@@ -13,6 +13,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const transferRouter = require('./routes/transfer');
+const accountRouter = require('./routes/account');
+const ajaxRouter = require('./routes/ajaxMethods');
 
 require('./middlewares/auth');
 
@@ -61,6 +63,8 @@ app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/transfer', transferRouter);
+app.use('/account', accountRouter);
+app.use('/ajax', ajaxRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

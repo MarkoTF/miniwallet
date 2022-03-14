@@ -1,0 +1,50 @@
+extends layout
+
+include mixins/form
+
+block content
+  include includes/navbar
+
+  section.vh-100.gradient-custom(style='padding:50px;')
+    .container.h-100
+      .row.d-flex.justify-content-center.align-items-center
+        .col-12.col-md-8.col-lg-6.col-xl-5
+
+          +form()
+            div.alert.alert-warning
+              p Puedes generar tu clave <a href="https://www.ethereumaddressgenerator.com/" target="_blank">aquí</a>
+            .form-outline.mb-4
+              h3
+                label.form-label(for='with') Moneda
+              select.form-select.form-control.form-control-lg(
+                name="key_type"
+                aria-label="Select type of money")
+                // disabled)
+                option(selected) ETH
+                // option(value="ETH") ETH
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for) Nombre de referencia
+              input.form-control.form-control-lg(
+                type='text'
+                name='key_name')
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for) Llave pública
+              input.form-control.form-control-lg(
+                type='text'
+                name='key_public')
+
+            .form-outline.mb-4
+              h3
+                label.form-label(for) Llave privada
+              input.form-control.form-control-lg(
+                type='password'
+                name='key_private')
+
+            .form-outline.mb-2
+              .d-grid.gap-2
+                button.btn.btn-primary.btn-lg Guardar
+

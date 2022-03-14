@@ -8,10 +8,10 @@ block form
         +form()
           h3.mb-5 Inicia sesión!
           .form-outline.mb-4
-            input#sign-in-email.form-control.form-control-lg(type='email' name='email')
+            input#sign-in-email.form-control.form-control-lg(type='email' name='email' required)
             label.form-label(for='sign-in-email') Correo electrónico
           .form-outline.mb-4
-            input#sign-in-password.form-control.form-control-lg(type='password' name='password')
+            input#sign-in-password.form-control.form-control-lg(type='password' name='password' required)
             label.form-label(for='typePasswordX-2') Contraseña
           .d-grid.gap-2
             button.btn.btn-primary.btn-lg(type='submit') Ir a mi cuenta

@@ -23,7 +23,7 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, cb) =
 passport.serializeUser((user, cb) => {
   process.nextTick(() => {
     debugAuth(user);
-    cb(null, { id: user._id /*, username: user.username*/ });
+    cb(null, { id: user._id });
   });
 });
 
@@ -31,10 +31,10 @@ passport.deserializeUser((id, cb) => {
   process.nextTick(() => {
     objId = mongoose.Types.ObjectId(id)
 
-    User.findOne({ _id: objId })
-    .exec((err, user) => {
+    User.findOne({ _id: objId }).exec((err, user) => {
+      const { user_password, ...restData } = user._doc;
       if (err){ return cb(err); }
-      cb(null, user);
+      cb(null, restData);
     });
   });
 });

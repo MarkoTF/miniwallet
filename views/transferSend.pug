@@ -21,8 +21,8 @@ block content
                   option(selected) ETH
                   option(value='MXN') MXN
                   option(value='USD') USD
-                  option(value='ETH') ETH
                 input#amoun.form-control.form-control-lg(
+                  required
                   type='number'
                   min='0'
                   step='any'
@@ -33,14 +33,19 @@ block content
               h3
                 label.form-label(for='to') Para
               input#to.form-control.form-control-lg(
+                required
                 type='text'
                 name='to')
 
             .form-outline.mb-4
               h3
                 label.form-label(for='with') Pagar con
-              select#with.form-select.form-control.form-control-lg(aria-label="Select type of money" disabled)
-                option(selected) ETH
+              select#with.form-select.form-control.form-control-lg(
+                aria-label="Select type of money"
+                name="account"
+                required)
+                each opt in keys
+                  option(value=opt.value)=opt.name
 
             .form-outline.mb-2
               .d-grid.gap-2

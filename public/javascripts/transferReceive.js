@@ -1,5 +1,6 @@
 const copyButton = document.getElementById('copy');
 const codeField = document.getElementById('code');
+
 copyButton.addEventListener('click', (e) => {
   e.preventDefault();
   navigator.clipboard.writeText(code.value).then(() => {

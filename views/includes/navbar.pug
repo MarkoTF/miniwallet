@@ -12,25 +12,5 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.ms-auto.mb-2.mb-lg-0
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle(
-            href='#'
-            role='button'
-            data-bs-toggle='dropdown'
-            aria-expanded='false') Realizar transferencia
-          ul.dropdown-menu(aria-labelledby='navbarDropdown')
-            li
-              a.dropdown-item(href='/transfer/send') Enviar
-            li
-              a.dropdown-item(href='/transfer/receive') Recibir
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle(
-            href='#'
-            role='button'
-            data-bs-toggle='dropdown'
-            aria-expanded='false') Opciones de cuenta
-          ul.dropdown-menu(aria-labelledby='navbarDropdown')
-            li
-              a.dropdown-item(href='#') Exportar
-            li
-              a.dropdown-item(href='#') Importar
+        a.btn.btn-info.me-2(href='/transfer/send') Enviar
+        a.btn.btn-success(href='/account/key/add') Agregar otra llave
