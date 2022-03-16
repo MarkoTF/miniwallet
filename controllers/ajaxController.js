@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { mkdtemp, writeFile, stat } = require('fs/promises');
 const Key = require('../models/key');
 const User = require('../models/user')
 
@@ -16,20 +17,25 @@ exports.removeKey = async (req, res, next) => {
   }
 }
 
-exports.getKeysFile = (req, res, next) => {
-  // const file = fs.createReadStream(buffer);
-  // const myDir = fs.readdir('./temp_files', (err, content) => {
-  //   console.log(content);
-  // });
+exports.getKeysFile = async (req, res, next) => {
+  try {
+    const key = await Key.findById(req.query.keyid, 'key_public key_private');
+    const { key_private, key_public } = key._doc;
+    const fileContent = `Público: ${key_public}\nPrivado: ${key_private}`;
+    const tmpDir = await mkdtemp('./tmp/key-');
+    const fullFilePath = `${tmpDir}/key.txt`;
+    const keyFile = await writeFile(fullFilePath, fileContent);
+    const fileStat = await stat(fullFilePath);
 
-  const stat = fs.statSync('./temp_files/example.txt');
+    res.writeHead(200, {
+      'Content-Type': 'text/plain',
+      'Content-Length': fileStat.size
+    });
 
-  res.writeHead(200, {
-    'Content-Type': 'text/plain',
-    'Content-Length': stat.size
-  });
+    const file = fs.createReadStream(fullFilePath);
+    file.pipe(res);
+  } catch(err) {
+    next(err);
+  }
 
-  const file = fs.createReadStream('./temp_files/example.txt');
-  // We replaced all the event handlers with a simple call to readStream.pipe()
-  file.pipe(res);
 }

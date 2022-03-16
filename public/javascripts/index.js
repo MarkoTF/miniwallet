@@ -63,7 +63,15 @@ const removeKey = async (id, name) => {
 
 const getKeysFile = async (id, name) => {
   try {
-    const req = await fetch('/ajax/getkeyfile');
+    const req = await fetch(`/ajax/getkeyfile?keyid=${id}`/*, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ keyId: id }),
+    }*/);
+    console.log(req);
+
     if (!req.ok) throw new Error('Error');
     const file = await req.blob();
     const link = document.createElement('a');
