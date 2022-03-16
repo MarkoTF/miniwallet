@@ -57,6 +57,21 @@ const removeKey = async (id, name) => {
     keyCard.remove();
     showToast(`La llave ${name} se ha eliminado con éxito`, 'Hecho',  'Hace menos de 1 minuto', 'bg-success bg-opacity-25');
   } catch(err) {
-    showToast(`No se pudo eliminar la llave ${name}`, 'Error',  'Hace menos de 1 minuto', 'bg-danger bg-opacity-25');
+    showToast(`No se pudo eliminar la llave ${name}. Por favor, segurece de ingresar la contraseña conrrecta`, 'Error',  'Hace menos de 1 minuto', 'bg-danger bg-opacity-25');
+  }
+}
+
+const getKeysFile = async (id, name) => {
+  try {
+    const req = await fetch('/ajax/getkeyfile');
+    if (!req.ok) throw new Error('Error');
+    const file = await req.blob();
+    const link = document.createElement('a');
+    link.download = 'keys.txt';
+    link.href = URL.createObjectURL(file);
+    link.click();
+    URL.revokeObjectURL(link.href);
+  } catch(err) {
+    showToast(`Error al descargar la llave ${name}. Por favor, segurece de ingresar la contraseña conrrecta`, 'Error',  'Hace menos de 1 minuto', 'bg-danger bg-opacity-25');
   }
 }
